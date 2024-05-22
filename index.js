@@ -1,16 +1,17 @@
-const chat = require("./chat");
-const fs = require("fs");
-const chalk = require("chalk");
-const { multilineRegex } = require("./regex");
-const pipeline = require("./pipeline");
+import chat from "@xaviabot/fca-unofficial";
+import { existsSync, readFileSync } from "fs";
+import chalk from "chalk";
+import { multilineRegex } from "./regex.js";
+import pipeline from "./pipeline.js";
+const { red } = chalk;
 
-if (!fs.existsSync(`${process.cwd()}/state.session`)) {
+if (!existsSync(`${process.cwd()}/state.session`)) {
   console.log(
-    `${chalk.red(
-      "Error: "
-    )}Session has not found, please run authenticate command (yarn authenticate|npm authenticate)`
+    `${red(
+      "Error: ",
+    )}Session has not found, please run authenticate command (yarn authenticate|npm authenticate)`,
   );
-  return;
+  process.exit();
 }
 
 const listenEvents = process.env.LISTEN_EVENT ? process.env.LISTEN_EVENT : true;
@@ -41,9 +42,9 @@ const init = (option = {}) => {
   try {
     const appState = JSON.parse(
       Buffer.from(
-        fs.readFileSync(`${process.cwd()}/state.session`, "utf-8"),
-        "base64"
-      )
+        readFileSync(`${process.cwd()}/state.session`, "utf-8"),
+        "base64",
+      ),
     );
 
     const fbOption = JSON.parse(JSON.stringify(options));
@@ -51,12 +52,12 @@ const init = (option = {}) => {
     delete fbOption["handleMatches"];
 
     chat({ appState }, { listenEvents, selfListen, ...fbOption }, (err, fb) => {
-      if (err) return console.log(`${chalk.red("Error: ")}${err}`);
+      if (err) return console.log(`${red("Error: ")}${err}`);
 
       const defaultPrefix = options.prefix === undefined ? "/" : options.prefix;
 
       fb.listen(async (err, event) => {
-        if (err) return console.log(`${chalk.red("Error: ")}${err}`);
+        if (err) return console.log(`${red("Error: ")}${err}`);
 
         events.forEach((e) => {
           const eventCallback = () => {
@@ -92,15 +93,15 @@ const init = (option = {}) => {
             const prefix = event.body.substring(0, 1);
 
             if (command.option.name === undefined) {
-              console.log(`${chalk.red("Error: ")}No command name defined.`);
+              console.log(`${red("Error: ")}No command name defined.`);
               process.exit();
             }
 
             if (command.option.command === undefined) {
               console.log(
-                `${chalk.red(
-                  "Error: "
-                )}No command defined, you should put atleast one command.`
+                `${red(
+                  "Error: ",
+                )}No command defined, you should put atleast one command.`,
               );
               process.exit();
             }
@@ -136,16 +137,16 @@ const init = (option = {}) => {
       });
     });
   } catch (err) {
-    console.log(`${chalk.red("Error: ")}${err.message}`);
+    console.log(`${red("Error: ")}${err.message}`);
     process.exit();
   }
 };
 
 process.on("uncaughtException", (err) => {
-  return console.log(`${chalk.red("Error: ")}${err.message}`);
+  return console.log(`${red("Error: ")}${err.message}`);
 });
 
-module.exports = {
+export default {
   add,
   init,
   list,

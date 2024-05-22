@@ -8,10 +8,10 @@ const pipeline = (pipes, ...args) => {
           typeof pipe(next) === "function"
             ? pipe(next)(...args)
             : pipe(...args),
-      (n) => n
+      (n) => n,
     );
 
   return pipelineCallback(...args);
 };
 
-module.exports = pipeline;
+export default pipeline;

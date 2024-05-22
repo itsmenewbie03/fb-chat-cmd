@@ -17,5 +17,4 @@ const multilineRegex = (pattern, str) => {
 
   return matches;
 };
-
-module.exports = { multilineRegex };
+export { multilineRegex };
