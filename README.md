@@ -1,23 +1,24 @@
-> [!CAUTION]
-> This is a work in progress this is nothing but a clone from [fb-chat-command](https://github.com/jersoncarin/fb-chat-command)
+# Fb Chat Cmd 💬 [![author/maintainer](https://img.shields.io/badge/by-itsmenewbie03-016eea.svg?logo=github&labelColor=181717&longCache=true&style=flat-square)](https://itsmenewbie03.is-a.dev)
+
+**Fb Chat Cmd** is a wrapper to the maintained fork of [fca-unofficial](https://github.com/XaviaTeam/fca-unofficial) by [XaviaTeam](https://github.com/XaviaTeam). This project is completely derived from [fb-chat-command](https://github.com/jersoncarin/fb-chat-command)
+
+Like this project? **Leave a star**! ⭐⭐⭐⭐⭐
 
 This repo is a fork from main repo and will usually have new features bundled faster than main repo (and maybe bundle some bugs, too).
 
-# Facebook Chat Command API
+# Unofficial Facebook Chat API
 
 This API is the only way to automate chat functionalities on a user account. We do this by emulating the browser. This means doing the exact same GET/POST requests and tricking Facebook into thinking we're accessing the website normally. Because we're doing it this way, this API won't work with an auth token but requires the credentials of a Facebook account.
 
 ## Install
 
 ```bash
-npm install fb-chat-command
+npx jsr add @itsmenewbie03/fb-chat-cmd
 ```
 
-## Testing your bots
-
-If you want to test your bots without creating another account on Facebook, you can use [Facebook Whitehat Accounts](https://www.facebook.com/whitehat/accounts/).
-
 ## Setup
+
+You can configure the following by creating a .env file by default they are both set to true.
 
 ```bash
 LISTEN_EVENT=true
@@ -27,77 +28,37 @@ SELF_LISTEN=true
 ## Example Usage
 
 ```javascript
-const command = require("fb-chat-command");
+import cmd from "@itsmenewbie03/fb-chat-cmd";
 
-// Initialize the chat command first
-// you can also pass option example command prefix
-command.init({ prefix: "/" });
+const help = async (matches, event, api) => {
+  const list = cmd.list();
+  let text = "";
+  list.forEach((e) => {
+    text += `* ${e.description}\n`;
+  });
+  await api.sendMessage(
+    `Commands Available\n${text}`,
+    event.threadID,
+    event.messageID,
+  );
+};
 
-command.add(
-  (body, event, api) => {
-    console.log(body);
-  },
-  { prefix: "/", command: "help" },
-);
-
-// also you can get all command registered
-command.list();
+cmd.init({ prefix: "/" });
+cmd.add(help, {
+  // NOTE: command: a regex will be used determine whether this commands gets executed or not
+  command: "^\\bhelp\\b",
+  name: "help",
+  description: "/help: Get list of commands available",
+});
 ```
-
-# APIs
-
-- [`api.addUserToGroup`](#addUserToGroup)
-- [`api.changeAdminStatus`](#changeAdminStatus)
-- [`api.changeArchivedStatus`](#changeArchivedStatus)
-- [`api.changeBlockedStatus`](#changeBlockedStatus)
-- [`api.changeGroupImage`](#changeGroupImage)
-- [`api.changeNickname`](#changeNickname)
-- [`api.changeThreadColor`](#changeThreadColor)
-- [`api.changeThreadEmoji`](#changeThreadEmoji)
-- [`api.createNewGroup`](#createNewGroup)
-- [`api.createPoll`](#createPoll)
-- [`api.deleteMessage`](#deleteMessage)
-- [`api.deleteThread`](#deleteThread)
-- [`api.forwardAttachment`](#forwardAttachment)
-- [`api.getAppState`](#getAppState)
-- [`api.getCurrentUserID`](#getCurrentUserID)
-- [`api.getEmojiUrl`](#getEmojiUrl)
-- [`api.getFriendsList`](#getFriendsList)
-- [`api.getThreadHistory`](#getThreadHistory)
-- [`api.getThreadInfo`](#getThreadInfo)
-- [`api.getThreadList`](#getThreadList)
-- [`api.getThreadPictures`](#getThreadPictures)
-- [`api.getUserID`](#getUserID)
-- [`api.getUserInfo`](#getUserInfo)
-- [`api.handleMessageRequest`](#handleMessageRequest)
-- [`api.listen`](#listen)
-- [`api.listenMqtt`](#listenMqtt)
-- [`api.logout`](#logout)
-- [`api.markAsDelivered`](#markAsDelivered)
-- [`api.markAsRead`](#markAsRead)
-- [`api.markAsReadAll`](#markAsReadAll)
-- [`api.markAsSeen`](#markAsSeen)
-- [`api.muteThread`](#muteThread)
-- [`api.removeUserFromGroup`](#removeUserFromGroup)
-- [`api.resolvePhotoUrl`](#resolvePhotoUrl)
-- [`api.searchForThread`](#searchForThread)
-- [`api.sendMessage`](#sendMessage)
-- [`api.sendTypingIndicator`](#sendTypingIndicator)
-- [`api.setMessageReaction`](#setMessageReaction)
-- [`api.setOptions`](#setOptions)
-- [`api.setTitle`](#setTitle)
-- [`api.threadColors`](#threadColors)
-- [`api.unsendMessage`](#unsendMessage)
-
----
 
 # Documentation
 
-See [this](https://github.com/Schmavery/facebook-chat-api/blob/master/DOCS.md) from [facebook-chat-api](https://github.com/Schmavery/facebook-chat-api)
+See [this](https://github.com/XaviaTeam/fca-unofficial/blob/master/DOCS.md) from [fca-unofficial](https://github.com/XaviaTeam/fca-unofficial)
 
 # Credits
 
-[facebook-chat-api contributors](https://github.com/Schmavery/facebook-chat-api)
+[facebook-chat-api contributors](https://github.com/XaviaTeam/fca-unofficial/graphs/contributors)
 
 # LICENSE
 
