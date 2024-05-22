@@ -1,22 +1,22 @@
 # Fb Chat Cmd 💬 [![author/maintainer](https://img.shields.io/badge/by-itsmenewbie03-016eea.svg?logo=github&labelColor=181717&longCache=true&style=flat-square)](https://itsmenewbie03.is-a.dev)
 
-**Fb Chat Cmd** is a wrapper to the maintained fork of [fca-unofficial](https://github.com/XaviaTeam/fca-unofficial) by [XaviaTeam](https://github.com/XaviaTeam). This project is completely derived from [fb-chat-command](https://github.com/jersoncarin/fb-chat-command)
+**Fb Chat Cmd** is a wrapper to the maintained fork of [fca-unofficial](https://github.com/XaviaTeam/fca-unofficial) by [XaviaTeam](https://github.com/XaviaTeam). This project is derived from [fb-chat-command](https://github.com/jersoncarin/fb-chat-command) as it does not have the latest APIs.
 
 Like this project? **Leave a star**! ⭐⭐⭐⭐⭐
 
-This repo is a fork from main repo and will usually have new features bundled faster than main repo (and maybe bundle some bugs, too).
 
-# Unofficial Facebook Chat API
+
+## ✨ About the API
 
 This API is the only way to automate chat functionalities on a user account. We do this by emulating the browser. This means doing the exact same GET/POST requests and tricking Facebook into thinking we're accessing the website normally. Because we're doing it this way, this API won't work with an auth token but requires the credentials of a Facebook account.
 
-## Install
+## 📦 Installation
 
 ```bash
 npx jsr add @itsmenewbie03/fb-chat-cmd
 ```
 
-## Setup
+## ⚙️ Configuration
 
 You can configure the following by creating a .env file by default they are both set to true.
 
@@ -25,7 +25,7 @@ LISTEN_EVENT=true
 SELF_LISTEN=true
 ```
 
-## Example Usage
+## 💡 Example Usage
 
 ```javascript
 import cmd from "@itsmenewbie03/fb-chat-cmd";
@@ -52,15 +52,15 @@ cmd.add(help, {
 });
 ```
 
-# Documentation
+## 📖 Documentation
 
 See [this](https://github.com/XaviaTeam/fca-unofficial/blob/master/DOCS.md) from [fca-unofficial](https://github.com/XaviaTeam/fca-unofficial)
 
-# Credits
+## 🌟 Credits
 
 [facebook-chat-api contributors](https://github.com/XaviaTeam/fca-unofficial/graphs/contributors)
 
-# LICENSE
+## ⚖️ License
 
 ```
 The MIT License (MIT)
