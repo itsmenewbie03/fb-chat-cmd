@@ -1,9 +1,11 @@
 import chat from "@xaviabot/fca-unofficial";
+import { config } from "dotenv";
 import { existsSync, readFileSync } from "fs";
 import chalk from "chalk";
 import { multilineRegex } from "./regex.js";
 import pipeline from "./pipeline.js";
-const { red } = chalk;
+const { red, green } = chalk;
+config();
 
 if (!existsSync(`${process.cwd()}/state.session`)) {
   console.log(
@@ -13,10 +15,8 @@ if (!existsSync(`${process.cwd()}/state.session`)) {
   );
   process.exit();
 }
-
-const listenEvents = process.env.LISTEN_EVENT ? process.env.LISTEN_EVENT : true;
-const selfListen = process.env.LISTEN_EVENT ? process.env.SELF_LISTEN : true;
-
+const listenEvents = process.env.LISTEN_EVENT ? process.env.LISTEN_EVENT === 'true' : true;
+const selfListen = process.env.SELF_LISTEN ? process.env.SELF_LISTEN === 'true' : true;
 const commands = [];
 let options = {};
 const middlewares = [];
