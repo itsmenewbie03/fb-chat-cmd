@@ -17,23 +17,11 @@ npm install fb-chat-command
 
 If you want to test your bots without creating another account on Facebook, you can use [Facebook Whitehat Accounts](https://www.facebook.com/whitehat/accounts/).
 
-## Authenticate
-
-To authenticate your account you should create .env or export it on Environment variable
+## Setup
 
 ```bash
-FB_EMAIL=markzuckerbot@facebook.com
-FB_PASS=markzuckerbot
-
-# Also you can pass selfListen and listentEvent here
 LISTEN_EVENT=true
 SELF_LISTEN=true
-```
-
-Now you can run npm command to authenticate it.
-
-```bash
-npm authenticate
 ```
 
 ## Example Usage
@@ -110,7 +98,6 @@ See [this](https://github.com/Schmavery/facebook-chat-api/blob/master/DOCS.md) f
 # Credits
 
 [facebook-chat-api contributors](https://github.com/Schmavery/facebook-chat-api)
-[puppeteer](https://github.com/puppeteer/puppeteer)
 
 # LICENSE
 
@@ -119,6 +106,7 @@ The MIT License (MIT)
 
 Copyright (c) 2015 Avery, Benjamin, David, Maude
 Copyright (c) 2022 Jerson Carin
+Copyright (c) 2024 itsmenewbie03
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
