@@ -15,8 +15,12 @@ if (!existsSync(`${process.cwd()}/state.session`)) {
   );
   process.exit();
 }
-const listenEvents = process.env.LISTEN_EVENT ? process.env.LISTEN_EVENT === 'true' : true;
-const selfListen = process.env.SELF_LISTEN ? process.env.SELF_LISTEN === 'true' : true;
+const listenEvents = process.env.LISTEN_EVENT
+  ? process.env.LISTEN_EVENT === "true"
+  : true;
+const selfListen = process.env.SELF_LISTEN
+  ? process.env.SELF_LISTEN === "true"
+  : true;
 const commands = [];
 let options = {};
 const middlewares = [];
@@ -26,10 +30,12 @@ const eventMiddlewares = [];
 const addMiddleware = (...middleware) => middlewares.push(...middleware);
 
 const on = (event, listener, ...args) => events.push({ event, listener, args });
-const addEventMiddelware = (...middleware) =>
+
+const addEventMiddleware = (...middleware) =>
   eventMiddlewares.push(...middleware);
 
 const add = (callback, option) => commands.push({ callback, option });
+
 const list = () =>
   commands.map((command) => ({
     prefix: options.prefix === undefined ? "/" : options.prefix,
@@ -151,6 +157,6 @@ export default {
   init,
   list,
   addMiddleware,
-  addEventMiddelware,
+  addEventMiddleware,
   on,
 };
