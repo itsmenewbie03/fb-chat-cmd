@@ -1,5 +1,5 @@
 {
   "name": "@itsmenewbie03/fb-chat-cmd",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "exports": "./index.js"
 }
