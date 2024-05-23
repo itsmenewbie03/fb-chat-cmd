@@ -1,6 +1,6 @@
 {
   "name": "fb-chat-cmd",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "Unofficial Facebook Chat API for user-account (not page).",
   "type": "module",
   "keywords": [
